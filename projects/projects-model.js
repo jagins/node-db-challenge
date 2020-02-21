@@ -38,9 +38,15 @@ function addResource(resource)
     return database('resources').insert(resource, 'id')
 }
 
+function addProject(project)
+{
+    return database('projects').insert(project, 'id')
+}
+
 module.exports = {
     getProjects,
     getResources,
     getProjectTasks,
-    addResource
+    addResource,
+    addProject
 }

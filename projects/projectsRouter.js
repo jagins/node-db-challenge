@@ -94,4 +94,43 @@ router.post('/resources', (req, res) =>
     }
 })
 
+router.post('/', (req, res) =>
+{
+    if(!req.body || !req.body.name)
+    {
+        res.status(400).json({error: 'the name of the project is required'});
+    }
+    else
+    {
+        Projects.addProject(req.body)
+        .then(id =>
+        {
+            Projects.getProjects()
+            .then(projects =>
+            {
+                projects.forEach(project =>
+                {
+                    if(project.completed === 0)
+                    {
+                        project.completed = false;
+                    }
+                    else
+                    {
+                        project.completed = true;
+                    }
+                })
+                res.status(200).json(projects);
+            })
+            .catch(error => 
+            {
+                res.status(500).json({error: 'unable to get projects'});
+            })
+        })
+        .catch(error =>
+        {
+            res.status(200).json({error: 'unable to save project'});
+        })
+    }
+})
+
 module.exports = router;
