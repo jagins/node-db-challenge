@@ -5,6 +5,12 @@ function getProjects()
     return database('projects')
 }
 
+function getResources()
+{
+    return database('resources');
+}
+
 module.exports = {
-    getProjects
+    getProjects,
+    getResources
 }
