@@ -10,7 +10,30 @@ function getResources()
     return database('resources');
 }
 
+function getProjectTasks(projectID)
+{
+    /*
+        select  projects.name,
+                projects.description,
+                t.description,
+                t.notes,
+                t.completed 
+        from tasks t 
+        join projects ON t.project_id = projects.id 
+        where t.project_id = 1
+    */
+
+    return database.select('projects.name',
+            'projects.description',
+            'tasks.description',
+            'tasks.notes',
+            'tasks.completed')
+            .from('tasks')
+            .join('projects', 'tasks.project_id', 'projects.id')
+            .where('tasks.project_id', projectID);
+}
 module.exports = {
     getProjects,
-    getResources
+    getResources,
+    getProjectTasks
 }
