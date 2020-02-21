@@ -40,11 +40,23 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
 
+The difference between SQL and relational databases is that SQL is a langauge to query the database
+while relational databases just store information and how the tables relate to another. However SQL is
+needed to pull the relationships out of the database.
+
 - [ ] Why do tables need a `primary key`?
+
+Tables need primary keys as provide a way to access the rows, and which also allows the db designer to 
+join tables together easily.
 
 - [ ] What is the name given to a table column that references the primary key on another table.
 
+Foriegn keys
+
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
+
+In order to have a many to many relationship between 2 tables, you'll need to have a bridge or a joining table.
+The joining table will then store all the possible combinations you'll want to store.
 
 ## Minimum Viable Product
 
@@ -64,11 +76,11 @@ Complete the following tasks:
   - [ ] for `projects` and `tasks` if no value is provided for the `completed` property, the API should provide a default value of `false`.
 - [ ] Build an API with endpoints for:
   - [ ] adding resources.
-  - [ ] retrieving a list of resources.
+  - [X] retrieving a list of resources.
   - [ ] adding projects.
-  - [ ] retrieving a list of projects.
+  - [X] retrieving a list of projects.
   - [ ] adding tasks.
-  - [ ] retrieving a list of tasks. **The list of tasks should include the project name and project description**.
+  - [X] retrieving a list of tasks. **The list of tasks should include the project name and project description**.
 
 ### Entities
 
