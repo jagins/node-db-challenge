@@ -2,7 +2,7 @@ const database = require('../data/db-config');
 
 function getProjects()
 {
-    return database('projects')
+    return database('projects');
 }
 
 function getResources()
@@ -35,12 +35,22 @@ function getProjectTasks(projectID)
 
 function addResource(resource)
 {
-    return database('resources').insert(resource, 'id')
+    return database('resources').insert(resource, 'id');
 }
 
 function addProject(project)
 {
-    return database('projects').insert(project, 'id')
+    return database('projects').insert(project, 'id');
+}
+
+function addTask(task)
+{
+    return database('tasks').insert(task, 'id');
+}
+
+function getTasks()
+{
+    return database('tasks');
 }
 
 module.exports = {
@@ -48,5 +58,7 @@ module.exports = {
     getResources,
     getProjectTasks,
     addResource,
-    addProject
+    addProject,
+    addTask,
+    getTasks
 }

@@ -133,4 +133,44 @@ router.post('/', (req, res) =>
     }
 })
 
+router.post('/tasks', (req, res) =>
+{
+    if(!req.body || !req.body.project_id || !req.body.description)
+    {
+        res.status(400).json({error: 'please include the project id, and description for the task'});
+    }
+    else
+    {
+        Projects.addTask(req.body)
+        .then(id =>
+        {
+            Projects.getTasks()
+            .then(tasks =>
+            {
+                tasks.forEach(task =>
+                {
+                    if(task.completed === 0)
+                    {
+                        task.completed = false;
+                    }
+                    else
+                    {
+                        task.completed = true;
+                    }
+                    
+                })
+                res.status(200).json(tasks);
+            })
+            .catch(error =>
+            {
+                res.status(500).json({error: 'unable to get tasks'});
+            })
+        })
+        .catch(error =>
+        {
+            res.status(500).json({error: 'unable to add task'});
+        })
+    }
+})
+
 module.exports = router;
