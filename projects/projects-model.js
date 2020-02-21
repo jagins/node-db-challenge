@@ -32,8 +32,15 @@ function getProjectTasks(projectID)
             .join('projects', 'tasks.project_id', 'projects.id')
             .where('tasks.project_id', projectID);
 }
+
+function addResource(resource)
+{
+    return database('resources').insert(resource, 'id')
+}
+
 module.exports = {
     getProjects,
     getResources,
-    getProjectTasks
+    getProjectTasks,
+    addResource
 }

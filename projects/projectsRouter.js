@@ -66,6 +66,32 @@ router.get('/:id/tasks', (req, res) =>
     })
 })
 
-router.post('/resources')
+router.post('/resources', (req, res) =>
+{
+    if(!req.body || !req.body.name)
+    {
+        res.status(400).json({error: 'the name of the resource is required'});
+    }
+    else
+    {
+        Projects.addResource(req.body)
+        .then(id =>
+        {
+            Projects.getResources()
+            .then(resources =>
+            {
+                res.status(200).json(resources);
+            })
+            .catch(error =>
+            {
+                res.status(500).json({error: 'unable to get resources'});
+            })
+        })
+        .catch(error =>
+        {
+            res.status(500).json({error: 'unable to save resource to the database'});
+        })
+    }
+})
 
 module.exports = router;
